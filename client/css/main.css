@@ -1,0 +1,153 @@
+.title {
+  position: relative;
+  padding-left: 350px;
+  font-size: 50px;
+  line-height: 48px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.title::before {
+  content: '';
+  display: block;
+  background-image: url('/picture/logo_transparentMin.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 310px;
+  height: 52px;
+  position: absolute;
+  left: 0;
+  bottom: 62%;
+  transform: translateY(50%);
+}
+
+.main__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #000;
+}
+
+.title__form {
+  display: block;
+  margin-bottom: 30px;
+  font-size: 30px;
+  line-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title__form label {
+  display: block;
+}
+
+.title__form label:not(:last-child) {
+  margin-right:50px;
+}
+
+.iterface {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+
+
+.label__wrapper {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form__wrapper label{
+  display: block;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.form__wrapper input{
+  display: block;
+  font-size: 20px;
+  line-height: 25px;
+  padding: 0 10px;
+}
+
+.form__connect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width:  100%;
+  min-width: 400px;
+  margin-bottom: 30px;
+}
+
+button.btn{
+  display: block;
+  padding: 20px 10px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0;
+  border:1px solid #000;
+  border-radius: 10px;
+}
+
+.form__connect button {
+  display: block;
+  padding: 20px 10px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0;
+  border:1px solid #000;
+  background-color: #7FFFD4;
+  border-radius: 10px;
+}
+
+.btn__interface {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.btn:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.btn__add {
+  background-color: #FDD9B5;
+}
+
+.btn__remove {
+  background-color: #E32636;
+}
+
+.btn__check  {
+  background-color: #ADFF2F;
+}
+
+.btn__hide {
+  background-color: #D76E00;
+}
+
+.btn__interface-group--one,
+.btn__interface-group--two {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn__interface-group--one {
+  align-items:  flex-start;
+}
+
+.btn__interface-group--two {
+  align-items:  flex-end;
+}

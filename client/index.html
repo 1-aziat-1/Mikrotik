@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/index.js"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="container">
+      <div class="wrapper">
+        <div class="main__title">
+          <h1 class="title">Rouster OS</h1>
+          <form action="#" class="title__form">
+            <label class="one">
+              <input type="radio" name="mode" value="1" checked />
+              Режим 1
+            </label>
+            <label class="two">
+              <input type="radio" name="mode" value="2" />
+              Режим 2
+            </label>
+          </form>
+        </div>
+        <div class="iterface">
+          <div class="interface__file">
+            <form enctype="file__form">
+              <input type="file" name="f">
+            </form>
+          </div>
+          <div class="iterface__conntect">
+            <div class="form form__connect">
+              <div class="form__wrapper">
+                <div class="label__wrapper">
+                  <label for="fname">IP</label>
+                  <input type="text" name="ip">
+                </div>
+                <div class="label__wrapper">
+                  <label for="lname">Логин</label>
+                  <input type="text" name="name">
+                </div>
+                <div class="label__wrapper">
+                  <label for="lname">Пароль</label>
+                  <input type="text" name="password">
+                </div>
+              </div>
+              <button class="form__submit button">Подключиться</button>
+            </div>
+          </div>
+          <div class="btn__interface">
+            <div class="btn__interface-group--one">
+              <button class="btn__add btn">Добавить узел</button>
+              <button class="btn__remove btn">Удалить узел</button>
+            </div>
+            <div class="btn__interface-group--two">
+              <button class="btn__check btn">Показать узлы</button>
+              <button class="btn__hide btn">Маскировать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay overlayNew no-active">
+    <div class="modal">
+      <div class="modal__container">
+        <div class="modal__modalWrapper">
+          <p class="modal__text">Список узлов</p>
+        </div>
+        <div class="modal__form-check">
+          <div class="modal__form-knot">
+            <p class="modal__num">1</p>
+            <p class="modal__ip">192.168.0.11</p>
+            <p class="modal__eth">eth1</p>
+          </div>
+          <div class="modal__form-knot">
+            <p class="modal__num">2</p>
+            <p class="modal__ip">192.168.0.17</p>
+            <p class="modal__eth">eth2</p>
+          </div>
+          <div class="modal__form-knot">
+            <p class="modal__num">3</p>
+            <p class="modal__ip">192.168.0.21</p>
+            <p class="modal__eth">eth3</p>
+          </div>
+        </div>
+        <span class="modal__close"></span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
