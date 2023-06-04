@@ -4,10 +4,11 @@ const { Agent } = require('https');
 const path = require('path');
 const app = express();
 
+
 const setting = {
-  host: '192.168.0.20',
-  user: 'admin',
-  password: '123',
+  host: '',
+  user: '',
+  password: '',
   port: 443, // default 443
   secure: false, // default false
 };
@@ -37,47 +38,62 @@ const rosRest = ({ host, port = 443, user, password, secure = false }) => {
 
 app.use(express.json());
 
+app.post('/api/connect', (req, res) => {
+  console.log(req.body);
+  setting.host  = req.body.ip;
+  setting.user  =  req.body.login;
+  setting.password  = req.body.password;
+  res.status(201);
+});
+
+
 app.get('/api/print', (req, res) => {
-  rosRest({
-    host: '192.168.0.21',
-    user: 'admin',
-    password: '123',
-    port: 443, // default 443
-    secure: false, // default false
-  }).print('ip/arp')
+  console.log(setting);
+  rosRest(setting).print('ip/arp')
     .then((result) => {
       res.status(200).json(result.data);
     })
     .catch((err) => {
-      res.status(404).json(err);
+      res.status(400).json(err);
     })
 });
 
 app.post('/api/remove', (req, res) => {
-  rosRest({
-    host: '192.168.0.21',
-    user: 'admin',
-    password: '123',
-    port: 443, // default 443
-    secure: false, // default false
-  }).remove(`ip/arp/*${req.body.id}`)
+  rosRest(setting).remove(`ip/arp/*${req.body.id}`)
     .then((result) => {
       res.status(200).json(result.data);
     })
     .catch((err) => {
-      res.status(404).json(err);
+      res.status(400).json(err);
     })
-  //   // .then((result) => {
-  //   //   res.status(200).json(result.data);
-  //   // })
-  //   // .catch((err) => {
-  //   //   res.status(200).json(err);
-  //   // })
 });
 
-app.get('/api/connect', (req, res) => {
-  res.status(200).json(res.data);
+app.post('/api/add', (req, res) => {
+  rosRest(setting).add(`ip/arp`,{
+    address: req.body.ip,
+    'mac-address': req.body.mac,
+    interface: req.body.eth,
+  })
+    .then((result) => {
+      res.status(200).json(result.data);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    })
 });
+
+app.post('/api/set', (req, res) => {
+  rosRest(setting).set(`ip/arp/${req.body.id}`,{
+    address: req.body.ip,
+  })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(200).json(err);
+    })
+});
+
 
 
 app.use(express.static(path.resolve(__dirname, 'client')));

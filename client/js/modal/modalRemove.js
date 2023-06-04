@@ -1,4 +1,4 @@
-import fetchRequest from "../fetchRequest.js";
+import fetchRequest from "../settings/fetchRequest.js";
 import { modalError } from "./modalErorr.js";
 import { modalSuccess } from "./modalSuccess.js";
 
@@ -64,7 +64,7 @@ export const modalRemove = () => {
       overlay.remove();
       document.body.append(modalSuccess());
     }
-    if (await response.status === 404) {
+    if (await response.status === 400) {
       overlay.remove();
       document.body.append(modalError());
     }

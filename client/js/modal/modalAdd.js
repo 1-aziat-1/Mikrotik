@@ -1,3 +1,7 @@
+import fetchRequest from "../settings/fetchRequest.js";
+import { modalError } from "./modalErorr.js";
+import { modalSuccess } from "./modalSuccess.js";
+
 export const modalAdd = () => {
   const overlay = document.createElement('div');
   overlay.className = 'overlay';
@@ -11,13 +15,9 @@ export const modalAdd = () => {
   const modalClose = document.createElement('span');
   modalClose.className = 'modal__close';
 
-  const modalWrapper = document.createElement('div');
-  modalWrapper.className = 'modal__modalWrapper';
-
   const modalText = document.createElement('p');
   modalText.className = 'modal__text';
   modalText.textContent = 'Добавить узел';
-  modalWrapper.append(modalText);
 
   const modalForm = document.createElement('form');
   modalForm.className = 'modal__form form';
@@ -45,7 +45,7 @@ export const modalAdd = () => {
   fieldsetETH.className = 'form__item name';
   fieldsetETH.innerHTML = `
     <label for="ETH" class="form__item-title">Interface</label>
-    <input class="form__item-input" id="ETH" name="ETH" type="text" required>
+    <input class="form__item-input" id="eth" name="eth" type="text" required>
   `;
 
   formContainer.append(fieldsetIP, fieldsetMAC, fieldsetETH);
@@ -58,17 +58,26 @@ export const modalAdd = () => {
   modalBtn.type = 'submit';
   modalBtn.textContent = 'Добавить';
 
-  modalContainer.append(modalForm, modalBtn, modalClose);
+  modalContainer.append(modalText, modalForm, modalBtn, modalClose);
 
   modal.append(modalContainer);
   
   overlay.append(modal);
 
-  modalBtn.addEventListener('click', () => {
-    inputItemIp.value = ''
-    inputItemMac.value = ''
-    inputItemEth.value = ''
-    overlay.remove();
+  modalBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(modalForm);
+    const data = Object.fromEntries(formData);
+    data.eth = `ether${data.eth}`;
+    const response = await fetchRequest(`/api/add`, 'POST', data);
+    if (await response.status === 400) {
+      overlay.remove();
+      document.body.append(modalError());
+    }
+    if (await response.complete) {
+      overlay.remove();
+      document.body.append(modalSuccess());
+    }
   });
 
   overlay.addEventListener('click', ({ target }) => {
